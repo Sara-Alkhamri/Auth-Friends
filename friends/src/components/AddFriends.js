@@ -1,48 +1,55 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const AddFriends = props => {
+const AddFriends = () => {
     const [name, setName] = useState({name: '', age: '', email: ''});
 
-    const changeHandle = e => {
+    const handleChange = e => {
         e.preventDefault();
         setName({...name, [e.target.name]: e.target.value});
+        console.log(e.target.value)
     }
-    const newFriends = e => {
-        axios
+    const handleSubmit = e => {
+        e.preventDefault()
+        axiosWithAuth()
         .post('http://localhost:5000/api/friends', name)
         .then(res => {
-            localStorage.setItem('token', res.data.payload);
-            props.history.push('/protected');
+            console.log(res.data)
+            // localStorage.setItem('token', res.data.payload);
+            // props.history.push('/protected');
+            setName({
+                name:'', age:'', email:''
+            })
         })
-        .catch(err => console.error(err.response));
+        .catch(err => console.log(err.response));
     }
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>  
                 <input 
                 type="text"
                 name="name"
                 placeholder="name"
                 value={name.name}
-                onChange={changeHandle}
+                onChange={handleChange}
                 />
                  <input 
                 type="text"
                 name="age"
                 placeholder="age"
                 value={name.age}
-                onChange={changeHandle}
+                onChange={handleChange}
                 />
                  <input 
                 type="text"
                 name="email"
                 placeholder="email"
                 value={name.email}
-                onChange={changeHandle}
+                onChange={handleChange}
                 />
-                <button onClick={newFriends}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )

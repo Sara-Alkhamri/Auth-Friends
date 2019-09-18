@@ -3,7 +3,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Friends from './Friends'
 import AddFriends from './AddFriends';
 
-const FriendsList = props => {
+const FriendsList = () => {
     const [friends, setFriends] = useState([]);
     useEffect(() => {
         getData();
@@ -14,18 +14,19 @@ const FriendsList = props => {
         .get('http://localhost:5000/api/friends')
         .then(res => {
             setFriends(res.data);
+            console.log(res.data)
         })
         .catch(err => console.log(err.response))
     }
 
     return (
-        <div>
-            <AddFriends />
-      
-        {friends.map(person => (
-            <Friends key={person.name} friends={friends}/>
-         ))}
+        <div className="list">
+            <AddFriends  />
+            {/* <Friends friends={friends}/> */}
+            {/* <button onClick={getData}>Add Friends</button>  */}
+            {friends.map(item => <Friends key={item.name} item={item}/>)}
+        
         </div>
     ) }
 
-export default FriendsList
+export default FriendsList;
