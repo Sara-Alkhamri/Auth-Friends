@@ -23,9 +23,9 @@ const FriendsList = () => {
         <div className="list">
             <AddFriends  />
             {/* <Friends friends={friends}/> */}
-            {/* <button onClick={getData}>Add Friends</button>  */}
+            
             {friends.map(item => <Friends key={item.name} item={item}/>)}
-        
+            <button onClick={getData}>See New Friend</button> 
         </div>
     ) }
 
