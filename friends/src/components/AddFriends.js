@@ -5,7 +5,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const AddFriends = () => {
     const [name, setName] = useState({name: '', age: '', email: ''});
-
     const handleChange = e => {
         e.preventDefault();
         setName({...name, [e.target.name]: e.target.value});
