@@ -18,12 +18,11 @@ const FriendsList = () => {
         })
         .catch(err => console.log(err.response))
     }
-
+    
     return (
         <div className="list">
             <AddFriends  />
             {/* <Friends friends={friends}/> */}
-            
             {friends.map(item => <Friends key={item.name} item={item}/>)}
             <button onClick={getData}>See New Friend</button> 
         </div>
