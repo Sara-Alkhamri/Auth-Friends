@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-const AddFriends = () => {
+const AddFriends = ({friends, setFriends}) => {
     const [name, setName] = useState({name: '', age: '', email: ''});
     const handleChange = e => {
         e.preventDefault();
@@ -12,17 +12,18 @@ const AddFriends = () => {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        axiosWithAuth()
-        .post('http://localhost:5000/api/friends', name)
-        .then(res => {
-            console.log(res.data)
-            // localStorage.setItem('token', res.data.payload);
-            // props.history.push('/protected');
-            setName({
-                name:'', age:'', email:''
-            })
-        })
-        .catch(err => console.log(err.response));
+        setFriends([...friends, name])
+        // axiosWithAuth()
+        // .post('http://localhost:5000/api/friends', name)
+        // .then(res => {
+        //     console.log(res.data)
+        //     // localStorage.setItem('token', res.data.payload);
+        //     // props.history.push('/protected');
+        //     setName({
+        //         name:'', age:'', email:''
+        //     })
+        // })
+        // .catch(err => console.log(err.response));
     }
     return (
         <div>

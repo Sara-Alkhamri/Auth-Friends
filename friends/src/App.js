@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <h1>Test</h1>
       <ul>
         <li>
           <Link to="/login">Login</Link>

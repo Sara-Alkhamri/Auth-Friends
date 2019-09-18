@@ -11,7 +11,7 @@ const FriendsList = () => {
 
     const getData = () => {
         axiosWithAuth()
-        .get('http://localhost:5000/api/friends')
+        .get('/friends')
         .then(res => {
             setFriends(res.data);
             console.log(res.data)
@@ -21,10 +21,10 @@ const FriendsList = () => {
     
     return (
         <div className="list">
-            <AddFriends  />
+            <AddFriends  friends={friends} setFriends={setFriends}/>
             {/* <Friends friends={friends}/> */}
             {friends.map(item => <Friends key={item.name} item={item}/>)}
-            <button onClick={getData}>See New Friend</button> 
+            <button onClick={getData}>See New Friend Now</button> 
         </div>
     ) }
 
